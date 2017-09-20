@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:scaleY="0.7"
+        android:src="@mipmap/oskr"/>
+    <TextView android:id="@+id/item_name_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NombreProducto"
+        android:layout_marginLeft="5dp"/>
+</LinearLayout>
