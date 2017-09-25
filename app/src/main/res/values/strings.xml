@@ -6,4 +6,7 @@
     <string name="product_quantity">Cantidad</string>
     <string name="product_price">Precio</string>
     <string name="product_desription">Descripcion</string>
+    <string name="no_conected_internet">No hay conexión a internet</string>
+    <string name="delete_ok">Eliminado correctamente</string>
+    <string name="no_deleted">No se ha podido eliminar</string>
 </resources>

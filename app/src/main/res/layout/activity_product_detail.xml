@@ -86,4 +86,13 @@
             android:text="@string/product_desription"/>
 
     </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/detail_product_delete_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:src="@drawable/ic_delete"
+        />
+
 </LinearLayout>

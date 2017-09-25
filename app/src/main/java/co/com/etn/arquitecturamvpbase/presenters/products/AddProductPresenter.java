@@ -3,8 +3,7 @@ package co.com.etn.arquitecturamvpbase.presenters.products;
 import co.com.etn.arquitecturamvpbase.R;
 import co.com.etn.arquitecturamvpbase.models.Product;
 import co.com.etn.arquitecturamvpbase.presenters.BasePresenter;
-import co.com.etn.arquitecturamvpbase.repositories.ProductRepository;
-import co.com.etn.arquitecturamvpbase.views.activities.products.AddProductActivity;
+import co.com.etn.arquitecturamvpbase.repositories.products.ProductRepository;
 import co.com.etn.arquitecturamvpbase.views.activities.products.IAddProductView;
 import retrofit.RetrofitError;
 
@@ -19,11 +18,11 @@ public class AddProductPresenter extends BasePresenter<IAddProductView> {
 
     public AddProductPresenter() {
         this.productRepository = new ProductRepository();
+        //TODO recibir el repositorio en el constructor
     }
 
 
     public void addProduct(final Product product) {
-        getView().showProgress(R.string.loading_message);
         Thread hilo = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -38,24 +37,21 @@ public class AddProductPresenter extends BasePresenter<IAddProductView> {
     }
 
     public void createProduct(Product product){
-        String msg = "Ha ocurrido un error agregando el producto";
         try {
             Product result = productRepository.addProduct(product);
             if(null != result && !"".equals(result.getId())){
-                msg = "Se ha añadido correctamente el producto \""+product.getName()+"\"";
+                getView().showResultAdd("Se ha añadido correctamente el producto \""+product.getName()+"\"");
                 closeActivity();
             } else {
-                msg = "No se ha podido agregar ";
+                getView().showResultAdd("No se ha podido agregar ");
             }
+
         }catch (RetrofitError retrofitError){
-            getView().showResultAdd("ERROR:"+retrofitError.getMessage());
+            //TODO capturar error
         } catch (Throwable throwable) {
-            throwable.printStackTrace();
-            getView().showResultAdd("ERROR:"+throwable.getMessage());
         } finally {
             getView().hideProgress();
         }
 
-        getView().showResultAdd(msg);
     }
 }

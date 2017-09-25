@@ -57,7 +57,18 @@ public class BaseActivity<T extends BasePresenter> extends AppCompatActivity imp
     }
 
     @Override
-    public void showMessage(String msj) {
+    public void showMessage(final String msj) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(BaseActivity.this, msj, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void closeActivity() {
+        this.finish();
     }
 
     public IVaidateInternet getVaidateInternet() {

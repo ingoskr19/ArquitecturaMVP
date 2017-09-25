@@ -1,4 +1,4 @@
-package co.com.etn.arquitecturamvpbase.views.activities;
+package co.com.etn.arquitecturamvpbase.views.activities.products;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -14,17 +13,15 @@ import java.util.ArrayList;
 import co.com.etn.arquitecturamvpbase.R;
 import co.com.etn.arquitecturamvpbase.helper.Constants;
 import co.com.etn.arquitecturamvpbase.models.Product;
-import co.com.etn.arquitecturamvpbase.presenters.ProductPresenter;
-import co.com.etn.arquitecturamvpbase.repositories.ProductRepository;
+import co.com.etn.arquitecturamvpbase.presenters.products.ProductPresenter;
 import co.com.etn.arquitecturamvpbase.views.BaseActivity;
-import co.com.etn.arquitecturamvpbase.views.activities.products.AddProductActivity;
 import co.com.etn.arquitecturamvpbase.views.adapters.ProductAdapter;
 
 /**
  * Created by Erika on 16/09/2017.
  */
 
-public class ProductActivity extends BaseActivity<ProductPresenter> implements IProductView{
+public class ProductActivity extends BaseActivity<ProductPresenter> implements IProductView {
 
     private ListView productList;
     private FloatingActionButton addButton;
@@ -35,6 +32,7 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
         createProgressDialog();
+        showProgress(R.string.loading_message);
         setPresenter(new ProductPresenter());
         getPresenter().inject(this,getVaidateInternet());
         productList = (ListView) findViewById(R.id.product_listview);
@@ -51,6 +49,7 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
 
     @Override
     public void showProductList(final ArrayList<Product> list) {
+        hideProgress();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -76,5 +75,11 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
     protected void onResume() {
         super.onResume();
         getPresenter().validateInternetProduct();
+    }
+
+    @Override
+    public void closeActivity() {
+        super.closeActivity();
+        productList = null;
     }
 }

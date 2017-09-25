@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import co.com.etn.arquitecturamvpbase.R;
 import co.com.etn.arquitecturamvpbase.models.Product;
-import co.com.etn.arquitecturamvpbase.presenters.ProductPresenter;
 import co.com.etn.arquitecturamvpbase.presenters.products.AddProductPresenter;
 import co.com.etn.arquitecturamvpbase.views.BaseActivity;
 
@@ -101,11 +100,13 @@ public class AddProductActivity extends BaseActivity<AddProductPresenter> implem
                 Toast.makeText(AddProductActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
+        closeActivity();
     }
 
     @Override
     public void closeActivity() {
-        super.finish();
+        super.closeActivity();
+        product = null;
     }
 
     public void enableButton(Button button){

@@ -1,4 +1,4 @@
-package co.com.etn.arquitecturamvpbase.views.activities;
+package co.com.etn.arquitecturamvpbase.views.activities.products;
 
 import java.util.ArrayList;
 

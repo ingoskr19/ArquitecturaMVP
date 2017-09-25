@@ -1,15 +1,12 @@
-package co.com.etn.arquitecturamvpbase.presenters;
-
-import android.util.Log;
-import android.widget.Toast;
+package co.com.etn.arquitecturamvpbase.presenters.products;
 
 import java.util.ArrayList;
 
 import co.com.etn.arquitecturamvpbase.R;
 import co.com.etn.arquitecturamvpbase.models.Product;
-import co.com.etn.arquitecturamvpbase.repositories.ProductRepository;
-import co.com.etn.arquitecturamvpbase.views.activities.IProductView;
-import co.com.etn.arquitecturamvpbase.views.activities.ProductActivity;
+import co.com.etn.arquitecturamvpbase.presenters.BasePresenter;
+import co.com.etn.arquitecturamvpbase.repositories.products.ProductRepository;
+import co.com.etn.arquitecturamvpbase.views.activities.products.IProductView;
 import retrofit.RetrofitError;
 
 /**
@@ -22,6 +19,7 @@ public class ProductPresenter extends BasePresenter<IProductView> {
 
     public ProductPresenter() {
         this.productRepository = new ProductRepository();
+        //TODO recibir el repositorio en el constructor
     }
 
     public void validateInternetProduct() {
@@ -33,7 +31,6 @@ public class ProductPresenter extends BasePresenter<IProductView> {
     }
 
     private void createThreadProduct() {
-        getView().showProgress(R.string.loading_message);
         Thread hilo = new Thread(new Runnable() {
             @Override
             public void run() {
