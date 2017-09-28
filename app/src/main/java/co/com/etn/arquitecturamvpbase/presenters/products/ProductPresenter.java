@@ -22,11 +22,11 @@ public class ProductPresenter extends BasePresenter<IProductView> {
         //TODO recibir el repositorio en el constructor
     }
 
-    public void validateInternetProduct() {
-        if (getVaidateInternet().isConnected()){
+    public void listProduct() {
+        if (getValidateInternet().isConnected()){
             createThreadProduct();
         } else {
-            //getView().showMessage("No esta conectado");
+            getView().showAlertDialog(R.string.error, R.string.no_conected_internet);
         }
     }
 
@@ -45,7 +45,7 @@ public class ProductPresenter extends BasePresenter<IProductView> {
             ArrayList<Product> list = productRepository.getProducList();
             getView().showProductList(list);
         } catch (RetrofitError retrofitError) {
-           //TODO: capturar error
+            getView().showAlertError(R.string.error, R.string.error_desconocido);
         } finally {
             getView().hideProgress();
         };

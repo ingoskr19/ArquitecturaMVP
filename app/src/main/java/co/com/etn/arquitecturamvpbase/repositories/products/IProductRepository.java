@@ -2,7 +2,7 @@ package co.com.etn.arquitecturamvpbase.repositories.products;
 
 import java.util.ArrayList;
 
-import co.com.etn.arquitecturamvpbase.models.DeleteProductResponse;
+import co.com.etn.arquitecturamvpbase.models.ProductResponse;
 import co.com.etn.arquitecturamvpbase.models.Product;
 
 /**
@@ -15,5 +15,7 @@ public interface IProductRepository {
 
     public Product addProduct(Product product);
 
-    public DeleteProductResponse deleteProduct(String id);
+    public ProductResponse deleteProduct(String id) throws RepositoryError;
+
+    public ProductResponse updateProduct(String id, Product product) throws RepositoryError;
 }

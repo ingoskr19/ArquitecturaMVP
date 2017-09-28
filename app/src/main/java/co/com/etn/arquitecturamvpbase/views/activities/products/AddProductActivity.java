@@ -1,5 +1,6 @@
 package co.com.etn.arquitecturamvpbase.views.activities.products;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -65,6 +66,12 @@ public class AddProductActivity extends BaseActivity<AddProductPresenter> implem
         }
     }
 
+    @Override
+    public void showMessage(String msj) {
+        super.showMessage(msj);
+        closeActivity();
+    }
+
     public void init(){
         addButton = (Button) findViewById(R.id.addproduct_button_add);
         addButton.setEnabled(false);
@@ -94,12 +101,6 @@ public class AddProductActivity extends BaseActivity<AddProductPresenter> implem
 
     @Override
     public void showResultAdd(final String msg) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(AddProductActivity.this, msg, Toast.LENGTH_SHORT).show();
-            }
-        });
         closeActivity();
     }
 
@@ -107,6 +108,47 @@ public class AddProductActivity extends BaseActivity<AddProductPresenter> implem
     public void closeActivity() {
         super.closeActivity();
         product = null;
+    }
+
+    @Override
+    public void showMessageError(String s) {
+        getShowAlertDialog().showAlertDialog(R.string.error, s, false, R.string.reintentar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                addProduct();
+            }
+        }, R.string.cancelar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void showAlertDialog(int error, int message) {
+        showAlert(error,message);
+        finish();
+    }
+
+    public void showAlert(final int title, final int message){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                getShowAlertDialog().showAlertDialog(title, message, false, R.string.reintentar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        addProduct();
+                    }
+                }, R.string.cancelar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+            }
+        });
+        finish();
     }
 
     public void enableButton(Button button){

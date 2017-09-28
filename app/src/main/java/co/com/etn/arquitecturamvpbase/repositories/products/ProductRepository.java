@@ -3,9 +3,8 @@ package co.com.etn.arquitecturamvpbase.repositories.products;
 import java.util.ArrayList;
 
 import co.com.etn.arquitecturamvpbase.helper.ServicesFactory;
-import co.com.etn.arquitecturamvpbase.models.DeleteProductResponse;
+import co.com.etn.arquitecturamvpbase.models.ProductResponse;
 import co.com.etn.arquitecturamvpbase.models.Product;
-import co.com.etn.arquitecturamvpbase.repositories.products.IProductRepository;
 import co.com.etn.arquitecturamvpbase.services.IServices;
 import retrofit.RetrofitError;
 
@@ -34,8 +33,21 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public DeleteProductResponse deleteProduct(String id) {
-        return services.deleteProduct(id);
+    public ProductResponse deleteProduct(String id) throws RepositoryError {
+        try {
+            return services.deleteProduct(id);
+        } catch (RetrofitError retrofitError){
+            throw MapperError.convertRetrofitErrorToRepositoryError(retrofitError);
+        }
+    }
+
+    @Override
+    public ProductResponse updateProduct(String id, Product product) throws RepositoryError {
+        try {
+            return services.updateProduct(id,product);
+        } catch (RetrofitError retrofitError){
+            throw MapperError.convertRetrofitErrorToRepositoryError(retrofitError);
+        }
     }
 
 }

@@ -9,6 +9,7 @@ import co.com.etn.arquitecturamvpbase.views.IBaseView;
 public interface IDetailProductView extends IBaseView {
 
     void showAlertDialog(int no_conected_internet);
-    void showToast(int delete_ok);
+    void showToast(int message);
+    void showToast(String message);
     void showAlertDialogError(int msg);
 }

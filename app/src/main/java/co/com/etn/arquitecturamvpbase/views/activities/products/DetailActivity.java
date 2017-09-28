@@ -77,6 +77,11 @@ public class DetailActivity extends BaseActivity<DetailProductPresenter> impleme
     }
 
     @Override
+    public void showToast(String message) {
+        showMessage(message);
+    }
+
+    @Override
     public void showAlertDialogError(int msg) {
         showMessage(getString(msg));
         //TODO mostarAlertDialogError

@@ -9,4 +9,12 @@
     <string name="no_conected_internet">No hay conexión a internet</string>
     <string name="delete_ok">Eliminado correctamente</string>
     <string name="no_deleted">No se ha podido eliminar</string>
+    <string name="error">Error</string>
+    <string name="error_desconocido">Ha ocurrido un error</string>
+    <string name="reintentar">Reintentar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="update_fail">Ha ocurrido un error al actualizar</string>
+    <string name="update_ok">Se ha actualizado correctamente</string>
+    <string name="no_update">No se pudo editar el producto</string>
+    <string name="updateproduct_button_update">Editar</string>
 </resources>

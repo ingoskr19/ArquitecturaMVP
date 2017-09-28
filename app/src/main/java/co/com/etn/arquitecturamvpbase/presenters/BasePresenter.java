@@ -21,7 +21,7 @@ public class BasePresenter <T extends IBaseView> {
         return view;
     }
 
-    public IVaidateInternet getVaidateInternet() {
+    public IVaidateInternet getValidateInternet() {
         return VaidateInternet;
     }
 

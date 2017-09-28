@@ -12,4 +12,8 @@ import co.com.etn.arquitecturamvpbase.views.IBaseView;
 public interface IProductView extends IBaseView {
 
     void showProductList(ArrayList<Product> list);
+
+    void showAlertDialog(int error, int no_conected_internet);
+
+    void showAlertError(int error, int error_);
 }

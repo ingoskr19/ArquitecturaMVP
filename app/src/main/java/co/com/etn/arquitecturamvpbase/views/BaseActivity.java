@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import co.com.etn.arquitecturamvpbase.helper.IVaidateInternet;
+import co.com.etn.arquitecturamvpbase.helper.ShowAlertDialog;
 import co.com.etn.arquitecturamvpbase.helper.ValidateInternet;
 import co.com.etn.arquitecturamvpbase.presenters.BasePresenter;
 
@@ -21,12 +22,18 @@ public class BaseActivity<T extends BasePresenter> extends AppCompatActivity imp
     private ProgressDialog progressDialog;
     private IVaidateInternet vaidateInternet;
     private T presenter;
+    private ShowAlertDialog showAlertDialog;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         vaidateInternet = new ValidateInternet(getApplicationContext());
+        this.showAlertDialog = new ShowAlertDialog(this);
+    }
+
+    public ShowAlertDialog getShowAlertDialog() {
+        return showAlertDialog;
     }
 
     @Override

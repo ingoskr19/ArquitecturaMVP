@@ -1,5 +1,6 @@
 package co.com.etn.arquitecturamvpbase.views.activities.products;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -36,7 +37,7 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
         setPresenter(new ProductPresenter());
         getPresenter().inject(this,getVaidateInternet());
         productList = (ListView) findViewById(R.id.product_listview);
-        getPresenter().validateInternetProduct();
+        getPresenter().listProduct();
         addButton = (FloatingActionButton) findViewById(R.id.list_product_add);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +59,35 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
         });
     }
 
+    @Override
+    public void showAlertDialog(int error, int message) {
+        showAlert(error,message);
+    }
+
+    @Override
+    public void showAlertError(int error, int message) {
+        showAlert(error,message);
+    }
+
+    public void showAlert(final int title, final int message){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                getShowAlertDialog().showAlertDialog(title, message, false, R.string.reintentar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        getPresenter().listProduct();
+                    }
+                }, R.string.cancelar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+            }
+        });
+    }
+
     private void callAdapter(final ArrayList<Product> list) {
         productAdapter = new ProductAdapter(this,R.id.product_listview,list);
         productList.setAdapter(productAdapter);
@@ -69,12 +99,23 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
                 startActivity(intent);
             }
         });
+
+        productList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ProductActivity.this, UpdateProductActivity.class);
+                intent.putExtra(Constants.ITEM_PRODUCT,list.get(position));
+                startActivity(intent);
+                return true;
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        getPresenter().validateInternetProduct();
+        getPresenter().listProduct();
     }
 
     @Override
@@ -82,4 +123,5 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
         super.closeActivity();
         productList = null;
     }
+
 }

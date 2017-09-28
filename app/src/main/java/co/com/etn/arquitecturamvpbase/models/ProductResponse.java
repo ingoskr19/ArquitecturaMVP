@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Created by Erika on 23/09/2017.
  */
 
-public class DeleteProductResponse implements Serializable {
+public class ProductResponse implements Serializable {
 
     @SerializedName("status")
     @Expose

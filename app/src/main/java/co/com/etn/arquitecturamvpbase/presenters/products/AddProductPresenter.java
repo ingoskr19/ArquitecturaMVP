@@ -18,39 +18,34 @@ public class AddProductPresenter extends BasePresenter<IAddProductView> {
 
     public AddProductPresenter() {
         this.productRepository = new ProductRepository();
-        //TODO recibir el repositorio en el constructor
     }
 
 
     public void addProduct(final Product product) {
-        Thread hilo = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                createProduct(product);
-            }
-        });
-        hilo.start();
-    }
-
-    public void closeActivity(){
-        getView().closeActivity();
+        if(getValidateInternet().isConnected()) {
+            Thread hilo = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    createProduct(product);
+                }
+            });
+            hilo.start();
+        }else{
+            getView().showAlertDialog(R.string.error, R.string.no_conected_internet);
+        }
     }
 
     public void createProduct(Product product){
         try {
             Product result = productRepository.addProduct(product);
             if(null != result && !"".equals(result.getId())){
-                getView().showResultAdd("Se ha añadido correctamente el producto \""+product.getName()+"\"");
-                closeActivity();
+                getView().showMessage("Se ha añadido correctamente el producto \""+product.getName()+"\"");
             } else {
-                getView().showResultAdd("No se ha podido agregar ");
+                getView().showMessageError("No se ha podido crear el producto \""+product.getName()+"\"");
             }
 
         }catch (RetrofitError retrofitError){
-            //TODO capturar error
-        } catch (Throwable throwable) {
-        } finally {
-            getView().hideProgress();
+
         }
 
     }

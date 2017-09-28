@@ -12,4 +12,8 @@ public interface IAddProductView extends IBaseView {
     void showResultAdd(String msg);
 
     void closeActivity();
+
+    void showMessageError(String s);
+
+    void showAlertDialog(int error, int no_conected_internet);
 }
