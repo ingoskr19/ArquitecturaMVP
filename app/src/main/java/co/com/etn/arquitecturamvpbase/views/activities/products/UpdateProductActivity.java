@@ -1,7 +1,6 @@
 package co.com.etn.arquitecturamvpbase.views.activities.products;
 
 import android.content.DialogInterface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,8 +12,9 @@ import co.com.etn.arquitecturamvpbase.models.Product;
 import co.com.etn.arquitecturamvpbase.presenters.products.UpdateProductPresenter;
 import co.com.etn.arquitecturamvpbase.repositories.products.ProductRepository;
 import co.com.etn.arquitecturamvpbase.views.BaseActivity;
+import co.com.etn.arquitecturamvpbase.views.products.IUpdateProductView;
 
-public class UpdateProductActivity extends BaseActivity<UpdateProductPresenter> implements IUpdateProductView{
+public class UpdateProductActivity extends BaseActivity<UpdateProductPresenter> implements IUpdateProductView {
 
     private EditText productName;
     private EditText productPrice;
@@ -57,7 +57,7 @@ public class UpdateProductActivity extends BaseActivity<UpdateProductPresenter> 
 
     @Override
     public void showToast(int update_ok) {
-        showMessage(getString(update_ok));
+        showMessage(update_ok);
         closeActivity();
     }
 
@@ -83,7 +83,7 @@ public class UpdateProductActivity extends BaseActivity<UpdateProductPresenter> 
 
     @Override
     public void showToast(String message) {
-        showMessage(message);
+        //showMessage(message);
         closeActivity();
     }
 

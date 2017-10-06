@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:paddingRight="6dp"
+    android:paddingLeft="6dp"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp">
+
+    <ImageView
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/oskr"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre:"
+                android:paddingRight="4dp"
+                android:paddingLeft="4dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                />
+
+            <TextView
+                android:id="@+id/customer_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="nombre"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apellido"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:paddingRight="4dp"
+                android:paddingLeft="4dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"/>
+
+            <TextView
+                android:id="@+id/customer_item_surname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"/>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorGray"
+            android:layout_marginLeft="5dp"
+            ></View>
+
+        <LinearLayout
+            android:id="@+id/customer_item_phone_showall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/customer_item_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:text="Teléfono"
+            android:textStyle="italic"
+            android:paddingRight="4dp"
+            android:paddingLeft="4dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            />
+            <TextView
+                android:id="@+id/customer_item_"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.09"
+                android:text="Ver todos..."
+                android:textSize="8dp"
+                android:paddingRight="4dp"
+                android:paddingLeft="4dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:gravity="right|center_vertical"
+                android:textAlignment="gravity"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_remove_red_eye_black_24dp"
+                android:tint="@color/colorGray"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:src="@drawable/ic_location"
+                android:tint="@color/colorAccent"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    android:paddingTop="6dp"
+                    android:text="Coordenadas"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorGray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:text="Lat:"
+                        android:paddingLeft="4dp"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/customer_item_phone_lat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:paddingLeft="5dp"
+                        android:text="descripcion"
+                        android:textColor="@color/colorPrimaryDark"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:text="Long:"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+                        android:paddingLeft="4dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/customer_item_phone_long"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:paddingLeft="5dp"
+                        android:text="descripcion"
+                        android:textColor="@color/colorPrimaryDark"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+</LinearLayout>

@@ -4,8 +4,8 @@ import co.com.etn.arquitecturamvpbase.R;
 import co.com.etn.arquitecturamvpbase.models.ProductResponse;
 import co.com.etn.arquitecturamvpbase.presenters.BasePresenter;
 import co.com.etn.arquitecturamvpbase.repositories.products.IProductRepository;
-import co.com.etn.arquitecturamvpbase.repositories.products.RepositoryError;
-import co.com.etn.arquitecturamvpbase.views.activities.products.IDetailProductView;
+import co.com.etn.arquitecturamvpbase.repositories.RepositoryError;
+import co.com.etn.arquitecturamvpbase.views.products.IDetailProductView;
 
 /**
  * Created by Erika on 23/09/2017.
@@ -20,7 +20,11 @@ public class DetailProductPresenter extends BasePresenter<IDetailProductView> {
     }
 
     public void deleteProduct(String id) {
-        createThreadDeleteProduct(id);
+        if(getValidateInternet().isConnected()) {
+            createThreadDeleteProduct(id);
+        } else {
+            getView().showAlertDialog(R.string.no_conected_internet);
+        }
     }
 
     public void createThreadDeleteProduct(final String id) {

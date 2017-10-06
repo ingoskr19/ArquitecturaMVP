@@ -15,8 +15,10 @@ import co.com.etn.arquitecturamvpbase.R;
 import co.com.etn.arquitecturamvpbase.helper.Constants;
 import co.com.etn.arquitecturamvpbase.models.Product;
 import co.com.etn.arquitecturamvpbase.presenters.products.ProductPresenter;
+import co.com.etn.arquitecturamvpbase.repositories.products.ProductRepository;
 import co.com.etn.arquitecturamvpbase.views.BaseActivity;
 import co.com.etn.arquitecturamvpbase.views.adapters.ProductAdapter;
+import co.com.etn.arquitecturamvpbase.views.products.IProductView;
 
 /**
  * Created by Erika on 16/09/2017.
@@ -34,7 +36,7 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
         setContentView(R.layout.activity_products);
         createProgressDialog();
         showProgress(R.string.loading_message);
-        setPresenter(new ProductPresenter());
+        setPresenter(new ProductPresenter(new ProductRepository()));
         getPresenter().inject(this,getVaidateInternet());
         productList = (ListView) findViewById(R.id.product_listview);
         getPresenter().listProduct();
@@ -42,7 +44,7 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProductActivity.this, AddProductActivity.class);
+                Intent intent = new Intent(ProductActivity.this, CreateProductActivity.class);
                 startActivity(intent);
             }
         });

@@ -1,4 +1,4 @@
-package co.com.etn.arquitecturamvpbase.repositories.products;
+package co.com.etn.arquitecturamvpbase.repositories;
 
 import java.io.InterruptedIOException;
 import java.net.SocketTimeoutException;

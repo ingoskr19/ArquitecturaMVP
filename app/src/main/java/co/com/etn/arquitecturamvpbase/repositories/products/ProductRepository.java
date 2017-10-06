@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import co.com.etn.arquitecturamvpbase.helper.ServicesFactory;
 import co.com.etn.arquitecturamvpbase.models.ProductResponse;
 import co.com.etn.arquitecturamvpbase.models.Product;
+import co.com.etn.arquitecturamvpbase.repositories.MapperError;
+import co.com.etn.arquitecturamvpbase.repositories.RepositoryError;
 import co.com.etn.arquitecturamvpbase.services.IServices;
 import retrofit.RetrofitError;
 

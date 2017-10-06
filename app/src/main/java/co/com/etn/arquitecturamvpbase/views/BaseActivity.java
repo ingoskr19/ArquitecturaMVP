@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import co.com.etn.arquitecturamvpbase.helper.IVaidateInternet;
@@ -54,11 +53,20 @@ public class BaseActivity<T extends BasePresenter> extends AppCompatActivity imp
 
     @Override
     public void hideProgress() {
-        Log.d("hide","ocultando progress");
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 progressDialog.hide();
+            }
+        });
+    }
+
+    @Override
+    public void showMessage(final int msj) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(BaseActivity.this, getString(msj), Toast.LENGTH_SHORT).show();
             }
         });
     }

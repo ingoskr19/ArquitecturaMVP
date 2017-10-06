@@ -17,4 +17,17 @@
     <string name="update_ok">Se ha actualizado correctamente</string>
     <string name="no_update">No se pudo editar el producto</string>
     <string name="updateproduct_button_update">Editar</string>
+    <string name="create_ok">Se ha creado el producto correctamente</string>
+    <string name="create_fail">No se ha podido create el producto. Por favor reintente de nuevo</string>
+    <string name="customer_add_ok">Se ha creado correctamente el contacto</string>
+    <string name="my_text"><u>Linea</u></string>
+    <string name="customer_name">Nombre</string>
+    <string name="customer_surname">Apellido</string>
+    <string name="customer_description_phone">Descripcion teléfono</string>
+    <string name="customer_phone_number">Numero teléfonico</string>
+    <string name="customer_phone_lat">Latitud</string>
+    <string name="customer_phone_long">Longitud</string>
+    <string name="customer_button_add">Guardar Cliente</string>
+    <string name="customer_button_savePhone">Agregar Teléfono</string>
+    <string name="customer_button_showPhoneList">Ver Telefonos</string>
 </resources>

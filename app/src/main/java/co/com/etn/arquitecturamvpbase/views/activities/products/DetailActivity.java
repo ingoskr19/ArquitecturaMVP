@@ -1,21 +1,18 @@
 package co.com.etn.arquitecturamvpbase.views.activities.products;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import co.com.etn.arquitecturamvpbase.R;
 import co.com.etn.arquitecturamvpbase.helper.Constants;
 import co.com.etn.arquitecturamvpbase.models.Product;
 import co.com.etn.arquitecturamvpbase.presenters.products.DetailProductPresenter;
-import co.com.etn.arquitecturamvpbase.repositories.products.IProductRepository;
 import co.com.etn.arquitecturamvpbase.repositories.products.ProductRepository;
 import co.com.etn.arquitecturamvpbase.views.BaseActivity;
+import co.com.etn.arquitecturamvpbase.views.products.IDetailProductView;
 
 /**
  * Created by Erika on 16/09/2017.
@@ -66,24 +63,24 @@ public class DetailActivity extends BaseActivity<DetailProductPresenter> impleme
 
     @Override
     public void showAlertDialog(int msg) {
-        showMessage(getString(msg));
+        showMessage(msg);
         //TODO mostar alertDialog
     }
 
     @Override
     public void showToast(int msg) {
-        showMessage(getString(msg));
+        showMessage(msg);
         closeActivity();
     }
 
     @Override
     public void showToast(String message) {
-        showMessage(message);
+        //showMessage(message);
     }
 
     @Override
     public void showAlertDialogError(int msg) {
-        showMessage(getString(msg));
+        showMessage(msg);
         //TODO mostarAlertDialogError
     }
 

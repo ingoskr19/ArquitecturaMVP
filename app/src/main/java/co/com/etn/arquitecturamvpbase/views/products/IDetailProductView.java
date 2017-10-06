@@ -1,4 +1,4 @@
-package co.com.etn.arquitecturamvpbase.views.activities.products;
+package co.com.etn.arquitecturamvpbase.views.products;
 
 import co.com.etn.arquitecturamvpbase.views.IBaseView;
 

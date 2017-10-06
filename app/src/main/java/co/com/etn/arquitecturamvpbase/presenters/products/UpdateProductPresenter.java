@@ -5,11 +5,9 @@ import co.com.etn.arquitecturamvpbase.models.Product;
 import co.com.etn.arquitecturamvpbase.models.ProductResponse;
 import co.com.etn.arquitecturamvpbase.presenters.BasePresenter;
 import co.com.etn.arquitecturamvpbase.repositories.products.IProductRepository;
-import co.com.etn.arquitecturamvpbase.repositories.products.ProductRepository;
-import co.com.etn.arquitecturamvpbase.repositories.products.RepositoryError;
+import co.com.etn.arquitecturamvpbase.repositories.RepositoryError;
 import co.com.etn.arquitecturamvpbase.services.IServices;
-import co.com.etn.arquitecturamvpbase.views.activities.products.IProductView;
-import co.com.etn.arquitecturamvpbase.views.activities.products.IUpdateProductView;
+import co.com.etn.arquitecturamvpbase.views.products.IUpdateProductView;
 
 /**
  * Created by Erika on 26/09/2017.

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import co.com.etn.arquitecturamvpbase.models.ProductResponse;
 import co.com.etn.arquitecturamvpbase.models.Product;
+import co.com.etn.arquitecturamvpbase.repositories.RepositoryError;
 
 /**
  * Created by Erika on 23/09/2017.

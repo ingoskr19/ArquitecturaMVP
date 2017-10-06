@@ -9,18 +9,19 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import co.com.etn.arquitecturamvpbase.R;
 import co.com.etn.arquitecturamvpbase.models.Product;
-import co.com.etn.arquitecturamvpbase.presenters.products.AddProductPresenter;
+import co.com.etn.arquitecturamvpbase.presenters.products.CreateProductPresenter;
+import co.com.etn.arquitecturamvpbase.repositories.products.ProductRepository;
 import co.com.etn.arquitecturamvpbase.views.BaseActivity;
+import co.com.etn.arquitecturamvpbase.views.products.ICreateProductView;
 
 /**
  * Created by Erika on 19/09/2017.
  */
 
-public class AddProductActivity extends BaseActivity<AddProductPresenter> implements IAddProductView, TextWatcher {
+public class CreateProductActivity extends BaseActivity<CreateProductPresenter> implements ICreateProductView, TextWatcher {
 
     private EditText addProductName;
     private EditText addProductPrice;
@@ -34,20 +35,25 @@ public class AddProductActivity extends BaseActivity<AddProductPresenter> implem
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addproduct);
-        setPresenter(new AddProductPresenter());
+        setPresenter(new CreateProductPresenter(new ProductRepository()));
         getPresenter().inject(this,getVaidateInternet());
         init();
     }
 
     public void fillFields(){
-        product.setName(addProductName.getText().toString());
-        product.setPrice(addProductPrice.getText().toString());
-        product.setQuantity(addProductQuantity.getText().toString());
-        product.setDescription(addProductDescription.getText().toString());
+     //   product.setName(addProductName.getText().toString());
+     //   product.setPrice(addProductPrice.getText().toString());
+     //   product.setQuantity(addProductQuantity.getText().toString());
+     //   product.setDescription(addProductDescription.getText().toString());
     }
 
-    public void addProduct(){
-        getPresenter().addProduct(product);
+    public void createProduct(){
+        getPresenter().createProduct(
+                addProductName.getText().toString(),
+                addProductPrice.getText().toString(),
+                addProductQuantity.getText().toString(),
+                addProductDescription.getText().toString()
+        );
     }
 
     @Override
@@ -58,7 +64,7 @@ public class AddProductActivity extends BaseActivity<AddProductPresenter> implem
                 && !"".equals(String.valueOf(addProductDescription.getText().toString()))
                 ){
             addButton.setEnabled(true);
-            fillFields();
+            //fillFields();
             enableButton(addButton);
         }else{
             addButton.setEnabled(false);
@@ -67,7 +73,7 @@ public class AddProductActivity extends BaseActivity<AddProductPresenter> implem
     }
 
     @Override
-    public void showMessage(String msj) {
+    public void showMessage(int msj) {
         super.showMessage(msj);
         closeActivity();
     }
@@ -78,7 +84,7 @@ public class AddProductActivity extends BaseActivity<AddProductPresenter> implem
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addProduct();
+                createProduct();
             }
         });
 
@@ -100,8 +106,13 @@ public class AddProductActivity extends BaseActivity<AddProductPresenter> implem
     }
 
     @Override
-    public void showResultAdd(final String msg) {
-        closeActivity();
+    public void showCreateResponse(boolean resp) {
+        if(resp){
+            showMessage(R.string.create_ok);
+            closeActivity();
+        }else{
+            showMessageError(getString(R.string.create_fail));
+        }
     }
 
     @Override
@@ -115,7 +126,7 @@ public class AddProductActivity extends BaseActivity<AddProductPresenter> implem
         getShowAlertDialog().showAlertDialog(R.string.error, s, false, R.string.reintentar, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                addProduct();
+                createProduct();
             }
         }, R.string.cancelar, new DialogInterface.OnClickListener() {
             @Override
@@ -138,7 +149,7 @@ public class AddProductActivity extends BaseActivity<AddProductPresenter> implem
                 getShowAlertDialog().showAlertDialog(title, message, false, R.string.reintentar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        addProduct();
+                        createProduct();
                     }
                 }, R.string.cancelar, new DialogInterface.OnClickListener() {
                     @Override

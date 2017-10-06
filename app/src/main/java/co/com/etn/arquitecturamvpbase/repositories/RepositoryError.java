@@ -1,4 +1,4 @@
-package co.com.etn.arquitecturamvpbase.repositories.products;
+package co.com.etn.arquitecturamvpbase.repositories;
 
 /**
  * Created by Erika on 26/09/2017.

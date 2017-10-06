@@ -3,10 +3,11 @@ package co.com.etn.arquitecturamvpbase.presenters.products;
 import java.util.ArrayList;
 
 import co.com.etn.arquitecturamvpbase.R;
+import co.com.etn.arquitecturamvpbase.helper.Database;
 import co.com.etn.arquitecturamvpbase.models.Product;
 import co.com.etn.arquitecturamvpbase.presenters.BasePresenter;
-import co.com.etn.arquitecturamvpbase.repositories.products.ProductRepository;
-import co.com.etn.arquitecturamvpbase.views.activities.products.IProductView;
+import co.com.etn.arquitecturamvpbase.repositories.products.IProductRepository;
+import co.com.etn.arquitecturamvpbase.views.products.IProductView;
 import retrofit.RetrofitError;
 
 /**
@@ -15,35 +16,40 @@ import retrofit.RetrofitError;
 
 public class ProductPresenter extends BasePresenter<IProductView> {
 
-    private ProductRepository productRepository;
+    private IProductRepository productRepository;
 
-    public ProductPresenter() {
-        this.productRepository = new ProductRepository();
-        //TODO recibir el repositorio en el constructor
+    public ProductPresenter(IProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
     public void listProduct() {
         if (getValidateInternet().isConnected()){
-            createThreadProduct();
+            createThreadProduct(true);
         } else {
+            createThreadProduct(false);
             getView().showAlertDialog(R.string.error, R.string.no_conected_internet);
         }
     }
 
-    private void createThreadProduct() {
+    private void createThreadProduct(final boolean conected) {
         Thread hilo = new Thread(new Runnable() {
             @Override
             public void run() {
-                getProductList();
+                getProductList(conected);
             }
         });
         hilo.start();
     }
 
-    private void getProductList() {
+    private void getProductList(boolean connected) {
         try {
-            ArrayList<Product> list = productRepository.getProducList();
-            getView().showProductList(list);
+            if(connected) {
+                ArrayList<Product> list = productRepository.getProducList();
+                getView().showProductList(list);
+            }else {
+                ArrayList<Product> list = Database.productDao.fetchAllProducts();
+                getView().showProductList(list);
+            }
         } catch (RetrofitError retrofitError) {
             getView().showAlertError(R.string.error, R.string.error_desconocido);
         } finally {
