@@ -11,6 +11,10 @@ import java.io.Serializable;
 
 public class Phone implements Serializable {
 
+    @SerializedName("descripcion")
+    @Expose
+    private String descripcion;
+
     @SerializedName("number")
     @Expose
     private String number;
@@ -22,6 +26,14 @@ public class Phone implements Serializable {
     @SerializedName("_id")
     @Expose
     private String id;
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
     public String getNumber() {
         return number;

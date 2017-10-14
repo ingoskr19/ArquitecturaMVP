@@ -20,4 +20,6 @@ public class Constants {
     public  static final String DATABASE_NAME = "shopping_db";
     public  static final int DATABASE_VERSION = 2;
 
+    public static final String TITLE_PRODUCT = "Productos";
+    public static final String TITLE_CONTACT = "Contactos";
 }

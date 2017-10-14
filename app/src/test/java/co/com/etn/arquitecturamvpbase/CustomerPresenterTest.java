@@ -129,4 +129,6 @@ public class CustomerPresenterTest {
         verify(createCustomerView).showMessage(R.string.customer_add_ok);
         verify(createCustomerView,never()).showAlertDialog(R.string.error);
     }
+
+
 }

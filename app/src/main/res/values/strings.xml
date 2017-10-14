@@ -30,4 +30,8 @@
     <string name="customer_button_add">Guardar Cliente</string>
     <string name="customer_button_savePhone">Agregar Teléfono</string>
     <string name="customer_button_showPhoneList">Ver Telefonos</string>
+    <string name="login_fail">No se pudo iniciar sesión</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_button_login">Iniciar Sesión</string>
 </resources>

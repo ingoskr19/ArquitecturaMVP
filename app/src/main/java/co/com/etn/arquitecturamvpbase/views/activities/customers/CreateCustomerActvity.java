@@ -132,12 +132,15 @@ public class CreateCustomerActvity extends BaseActivity<CreateCustomerPresenter>
     public void addPhone(){
         Phone phone = new Phone();
         phone.setNumber(phoneNumber.getText().toString().trim());
-        double[] coordinates = new double[]{Double.parseDouble(phoneLocationLat.getText().toString().trim()),
-                Double.parseDouble(phoneLocationLong.getText().toString().trim())};
+        double[] coordinates = new double[]{
+                Double.parseDouble(phoneLocationLat.getText().toString().trim()),
+                Double.parseDouble(phoneLocationLong.getText().toString().trim())
+        };
         Location location = new Location();
         location.setType("Point");
         location.setCoordinates(coordinates);
         phone.setLocation(location);
+        phone.setDescripcion("");
         customer.getPhonesList().add(phone);
         String text = ""+getString(R.string.customer_button_showPhoneList)+"("+customer.getPhonesList().size()+")";
         viewPhoneListButton.setText(text);
@@ -151,7 +154,7 @@ public class CreateCustomerActvity extends BaseActivity<CreateCustomerPresenter>
     public void addCustomer(){
         if(customer.getPhonesList().size()>0) {
             customer.setName(name.getText().toString().trim());
-            customer.setName(surname.getText().toString().trim());
+            customer.setSurname(surname.getText().toString().trim());
             getPresenter().createCustomer(customer);
         }
     }

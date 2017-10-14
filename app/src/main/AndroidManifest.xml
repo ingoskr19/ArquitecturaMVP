@@ -13,20 +13,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.activities.customers.CustomersActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".views.activities.customers.CustomersActivity"></activity>
         <activity android:name=".views.activities.products.DetailActivity" />
         <activity android:name=".views.activities.products.CreateProductActivity" />
         <activity android:name=".views.activities.products.UpdateProductActivity" />
         <activity android:name=".views.activities.products.ProductActivity" />
 
         <activity android:name=".views.activities.customers.CreateCustomerActvity" />
+        <activity android:name=".views.activities.login.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".views.activities.customers.PhoneListActivity"></activity>
+        <activity android:name=".views.activities.DashBoardActivity">
+        </activity>
     </application>
 
 </manifest>

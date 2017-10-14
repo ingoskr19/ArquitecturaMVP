@@ -91,7 +91,6 @@ public class CustomersActivity extends BaseActivity<CustomerPresenter> implement
     @Override
     protected void onResume() {
         super.onResume();
-        getPresenter().getCustomersList();
     }
 
 }

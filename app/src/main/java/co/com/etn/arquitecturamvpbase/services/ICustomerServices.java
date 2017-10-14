@@ -15,7 +15,7 @@ public interface ICustomerServices {
     @GET("/customers")
     ArrayList<Customer> getCustomersList();
 
-    @POST("/customer")
+    @POST("/customers")
     Customer createCustomer(@Body Customer customer);
 
 }
