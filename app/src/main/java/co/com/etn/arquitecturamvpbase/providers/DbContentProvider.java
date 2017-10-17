@@ -26,6 +26,7 @@ public abstract class DbContentProvider {
 
     protected abstract <T> T cursorToEntity(Cursor cursor);
 
+
     public Cursor query(String tableName, String[] columns,
                         String selection, String[] selectionArgs, String sortOrder) {
 

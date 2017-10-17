@@ -16,7 +16,9 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-            android:hint="@string/login_email" />
+            android:hint="@string/login_email"
+            android:text="oscar@gmail.com"
+            />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -28,7 +30,8 @@
             android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:inputType="numberPassword"
+            android:text="123456"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             android:hint="@string/login_password" />
     </android.support.design.widget.TextInputLayout>

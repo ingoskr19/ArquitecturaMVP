@@ -1,5 +1,7 @@
 package co.com.etn.arquitecturamvpbase.repositories;
 
+import android.content.SharedPreferences;
+
 import co.com.etn.arquitecturamvpbase.models.Login;
 import retrofit.RetrofitError;
 
@@ -9,4 +11,5 @@ import retrofit.RetrofitError;
 
 public interface ILoginRepository {
     public Login login(String email, String password) throws RetrofitError;
+    public SharedPreferences getSharedPreferences();
 }

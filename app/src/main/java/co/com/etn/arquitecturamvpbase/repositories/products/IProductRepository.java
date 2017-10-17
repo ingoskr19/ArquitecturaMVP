@@ -12,7 +12,7 @@ import co.com.etn.arquitecturamvpbase.repositories.RepositoryError;
 
 public interface IProductRepository {
 
-    public ArrayList<Product> getProducList();
+    public ArrayList<Product> getProducList() throws RepositoryError;
 
     public Product addProduct(Product product);
 

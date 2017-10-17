@@ -144,7 +144,7 @@ public class DetailPresenterTest {
         createProductPresenter.createProduct("Name1", "Price1", "Quantity1", "Description1");
         //verify(createProductPresenter).createThreadProduct(refEq(product));
         ArgumentCaptor<Product> argument = ArgumentCaptor.forClass(Product.class);
-        verify(createProductPresenter).createThreadProduct(argument.capture());
+        verify(createProductPresenter).createThreadProduct(argument.capture(),true);
         assertEquals("Name1", argument.getValue().getName());
         assertEquals("Price1", argument.getValue().getPrice());
         assertEquals("Quantity1", argument.getValue().getQuantity());

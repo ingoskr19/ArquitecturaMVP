@@ -6,6 +6,7 @@ import co.com.etn.arquitecturamvpbase.R;
 import co.com.etn.arquitecturamvpbase.helper.Database;
 import co.com.etn.arquitecturamvpbase.models.Product;
 import co.com.etn.arquitecturamvpbase.presenters.BasePresenter;
+import co.com.etn.arquitecturamvpbase.repositories.RepositoryError;
 import co.com.etn.arquitecturamvpbase.repositories.products.IProductRepository;
 import co.com.etn.arquitecturamvpbase.views.products.IProductView;
 import retrofit.RetrofitError;
@@ -23,37 +24,41 @@ public class ProductPresenter extends BasePresenter<IProductView> {
     }
 
     public void listProduct() {
-        if (getValidateInternet().isConnected()){
-            createThreadProduct(true);
-        } else {
-            createThreadProduct(false);
-            getView().showAlertDialog(R.string.error, R.string.no_conected_internet);
-        }
+        createThreadProduct(getValidateInternet().isConnected());
     }
 
     private void createThreadProduct(final boolean conected) {
         Thread hilo = new Thread(new Runnable() {
             @Override
             public void run() {
-                getProductList(conected);
+                if(conected){
+                    getProductList();
+                } else {
+                    getProductListDB();
+                }
             }
         });
         hilo.start();
     }
 
-    private void getProductList(boolean connected) {
+    private void getProductList() {
         try {
-            if(connected) {
-                ArrayList<Product> list = productRepository.getProducList();
-                getView().showProductList(list);
-            }else {
-                ArrayList<Product> list = Database.productDao.fetchAllProducts();
-                getView().showProductList(list);
-            }
-        } catch (RetrofitError retrofitError) {
-            getView().showAlertError(R.string.error, R.string.error_desconocido);
+            ArrayList<Product> list = productRepository.getProducList();
+            getView().showProductList(list);
+        } catch (RepositoryError repositoryError) {
+            getView().showMessage(repositoryError.getMessage());
         } finally {
             getView().hideProgress();
         };
+    }
+
+    private void getProductListDB() {
+        try {
+            ArrayList<Product> list = Database.productDao.fetchAllProducts();
+            getView().showProductList(list);
+        } catch (Exception ex) {
+            //getView().showAlertError(R.string.error, ex.getMessage());
+            getView().showMessage(ex.getMessage());
+        }
     }
 }

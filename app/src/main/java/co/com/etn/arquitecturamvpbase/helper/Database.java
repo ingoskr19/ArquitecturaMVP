@@ -16,23 +16,22 @@ public class Database {
     private final Context context;
     private DatabaseHelper dbHelper;
 
-    //DAO´S
-
+    //DAO´s
     public static ProductDao productDao;
-
 
     public Database(Context context) {
         this.context = context;
     }
 
     public Database open(){
-        try {
+        try{
             dbHelper = new DatabaseHelper(context);
             SQLiteDatabase sdb = dbHelper.getWritableDatabase();
+
             productDao = new ProductDao(sdb);
             return this;
         }catch (SQLException ex){
-            Log.e("SQL OPEN ", ex.getMessage());
+            Log.e("SQL OPEN", ex.getMessage());
             throw ex;
         }
     }

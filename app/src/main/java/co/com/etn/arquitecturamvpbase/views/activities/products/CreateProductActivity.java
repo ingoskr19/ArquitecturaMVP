@@ -41,19 +41,19 @@ public class CreateProductActivity extends BaseActivity<CreateProductPresenter> 
     }
 
     public void fillFields(){
-     //   product.setName(addProductName.getText().toString());
-     //   product.setPrice(addProductPrice.getText().toString());
-     //   product.setQuantity(addProductQuantity.getText().toString());
-     //   product.setDescription(addProductDescription.getText().toString());
+        product.setName(addProductName.getText().toString());
+        product.setPrice(addProductPrice.getText().toString());
+        product.setQuantity(addProductQuantity.getText().toString());
+        product.setDescription(addProductDescription.getText().toString());
     }
 
     public void createProduct(){
-        getPresenter().createProduct(
-                addProductName.getText().toString(),
+        getPresenter().createProduct(product);
+        /*        addProductName.getText().toString(),
                 addProductPrice.getText().toString(),
                 addProductQuantity.getText().toString(),
                 addProductDescription.getText().toString()
-        );
+        );*/
     }
 
     @Override
@@ -64,7 +64,7 @@ public class CreateProductActivity extends BaseActivity<CreateProductPresenter> 
                 && !"".equals(String.valueOf(addProductDescription.getText().toString()))
                 ){
             addButton.setEnabled(true);
-            //fillFields();
+            fillFields();
             enableButton(addButton);
         }else{
             addButton.setEnabled(false);

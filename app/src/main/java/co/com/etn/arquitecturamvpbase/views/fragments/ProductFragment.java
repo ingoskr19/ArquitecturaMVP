@@ -68,7 +68,6 @@ public class ProductFragment extends BaseFragments<ProductPresenter> implements 
             }
         });
 
-
         return view;
     }
 
@@ -142,7 +141,6 @@ public class ProductFragment extends BaseFragments<ProductPresenter> implements 
     @Override
     public void onResume() {
         super.onResume();
-        swipeRefresh.setRefreshing(true);
     }
 
     @Override

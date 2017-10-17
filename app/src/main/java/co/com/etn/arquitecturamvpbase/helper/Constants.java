@@ -22,4 +22,6 @@ public class Constants {
 
     public static final String TITLE_PRODUCT = "Productos";
     public static final String TITLE_CONTACT = "Contactos";
+
+    public static final String SP_LOGIN = "login";
 }

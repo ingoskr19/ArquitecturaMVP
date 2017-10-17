@@ -1,5 +1,7 @@
 package co.com.etn.arquitecturamvpbase.presenters.products;
 
+import java.util.UUID;
+
 import co.com.etn.arquitecturamvpbase.helper.Database;
 import co.com.etn.arquitecturamvpbase.models.Product;
 import co.com.etn.arquitecturamvpbase.presenters.BasePresenter;
@@ -22,24 +24,35 @@ public class CreateProductPresenter extends BasePresenter<ICreateProductView> {
 
     public void createProduct(String name, String price, String quantity, String description) {
         Product product = new Product();
+        product.setId(UUID.randomUUID().toString()); //WARNING
         product.setName(name);
         product.setPrice(price);
         product.setQuantity(quantity);
         product.setDescription(description);
-        createThreadProduct(product);
+        createThreadProduct(product,getValidateInternet().isConnected() );
     }
 
     public void createProduct(Product product) {
-        createThreadProduct(product);
+        //if (getValidateInternet().isConnected()){
+        product.setId(UUID.randomUUID().toString()); //WARNING
+        createThreadProduct(product,getValidateInternet().isConnected());
+        //}else{
+        //createThreadCreateProduct(product,true);
+        //getView().showAlertInternet(R.string.error, R.string.validate_internet);
+        //}
     }
 
-    public void createThreadProduct(final Product product) {
+    public void createThreadProduct(final Product product, final boolean isConnected) {
         //if(getValidateInternet().isConnected()) {
             Thread hilo = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     //createProductService(product);
-                    createProductLocal(product);
+                    if(isConnected) {
+                        createProductService(product);
+                    }else {
+                        createProductLocal(product);
+                    }
                 }
             });
             hilo.start();
@@ -51,14 +64,9 @@ public class CreateProductPresenter extends BasePresenter<ICreateProductView> {
     public void createProductService(Product product){
         try {
             Product result = productRepository.addProduct(product);
-            if(null != result && !"".equals(result.getId())){
-                //getView().showMessage("Se ha añadido correctamente el producto \""+product.getName()+"\"");
-            } else {
-                //getView().showMessageError("No se ha podido crear el producto \""+product.getName()+"\"");
-            }
-
+            getView().showMessage("Se ha añadido correctamente el producto \""+product.getName()+"\"");
         }catch (RetrofitError retrofitError){
-
+            getView().showMessageError(retrofitError.getMessage());
         }
     }
 
@@ -67,7 +75,7 @@ public class CreateProductPresenter extends BasePresenter<ICreateProductView> {
             boolean isCreated = Database.productDao.createProduct(product);
             getView().showCreateResponse(isCreated);
         }catch (Exception ex){
-            getView().showCreateResponse(false);
+            getView().showMessageError(ex.getMessage());
         }
     }
 }

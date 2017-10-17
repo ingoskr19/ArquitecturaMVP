@@ -11,6 +11,6 @@ import co.com.etn.arquitecturamvpbase.models.Product;
 public interface IProductDao {
     public ArrayList<Product> fetchAllProducts();
     public Boolean createProduct(Product product);
-    public Boolean deleteProduct(String id);
-    public Boolean updateProduct(String id , Product product);
+    public Boolean updateProduct(Product product);
+    public ArrayList<Product> fetchNotSyncProducts();
 }

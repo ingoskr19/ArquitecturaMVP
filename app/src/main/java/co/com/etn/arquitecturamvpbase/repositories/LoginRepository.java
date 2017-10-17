@@ -1,8 +1,9 @@
 package co.com.etn.arquitecturamvpbase.repositories;
 
+import android.content.SharedPreferences;
+
 import co.com.etn.arquitecturamvpbase.helper.ServicesFactory;
 import co.com.etn.arquitecturamvpbase.models.Login;
-import co.com.etn.arquitecturamvpbase.services.ICustomerServices;
 import co.com.etn.arquitecturamvpbase.services.ILoginServices;
 import retrofit.RetrofitError;
 
@@ -13,14 +14,20 @@ import retrofit.RetrofitError;
 public class LoginRepository implements ILoginRepository {
 
     ILoginServices service;
+    SharedPreferences sharedPreferences;
 
-    public LoginRepository() {
+    public LoginRepository(SharedPreferences sharedPreference) {
         ServicesFactory servicesFactory = new ServicesFactory();
         service = (ILoginServices) servicesFactory.getInstance(ILoginServices.class);
+        this.sharedPreferences = sharedPreference;
     }
 
     @Override
     public Login login(String email, String password) throws RetrofitError {
             return service.login(email,password);
+    }
+
+    public SharedPreferences getSharedPreferences() {
+        return sharedPreferences;
     }
 }

@@ -18,13 +18,16 @@ class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(IProductScheme.PRODUCT_TABLE_CREATE);
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(IProductScheme.PRODUCT_TABLE_CREATE);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int newVersion) {
-        Log.w(Constants.DATABASE_NAME, " update version to " + newVersion);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS  " + IProductScheme.PRODUCT_TABLE);
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        Log.w(Constants.DATABASE_NAME, " actualizando de versión a: " + newVersion);
+        if(oldVersion==1) {
+            //db.execSQL("DROP TABLE IF EXISTS " + IProductScheme.PRODUCT_TABLE);
+            db.execSQL(IProductScheme.PRODUCT_ALTER_TABLE);
+        }
     }
 }
