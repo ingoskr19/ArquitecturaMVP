@@ -35,7 +35,7 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
         createProgressDialog();
-        showProgress(R.string.loading_message);
+        //showProgress(R.string.loading_message);
         setPresenter(new ProductPresenter(new ProductRepository()));
         getPresenter().inject(this,getVaidateInternet());
         productList = (ListView) findViewById(R.id.product_listview);

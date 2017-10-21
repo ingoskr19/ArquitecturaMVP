@@ -38,6 +38,14 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
         }
     }
 
+    public void login(String token) {
+        if(getValidateInternet().isConnected()){
+            createThreadLoginWithToken(token);
+        }else {
+            getView().showMessage(R.string.no_conected_internet);
+        }
+    }
+
 
     public void createThreadLogin(final String email, final String password) {
         Thread hilo = new Thread(new Runnable() {
@@ -49,13 +57,29 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
         hilo.start();
     }
 
+    public void createThreadLoginWithToken(final String token) {
+        Thread hilo = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                loginRepositoryWithToken(token);
+            }
+        });
+        hilo.start();
+    }
+
     public void loginRepository(String email, String password) {
         try {
             Login login = loginRepository.login(email,password);
-            Gson gson = new Gson();
-            SharedPreferences.Editor editor = loginRepository.getSharedPreferences().edit();
-            editor.putString("login",gson.toJson(login));
-            editor.commit();
+            getView().showProfileview(login);
+        } catch (RetrofitError retrofitError){
+            String s =  new String(((TypedByteArray)retrofitError.getResponse().getBody()).getBytes());
+            getView().showMessage(s);
+        }
+    }
+
+    public void loginRepositoryWithToken(String token) {
+        try {
+            Login login = loginRepository.login(token);
             getView().showProfileview(login);
         } catch (RetrofitError retrofitError){
             String s =  new String(((TypedByteArray)retrofitError.getResponse().getBody()).getBytes());

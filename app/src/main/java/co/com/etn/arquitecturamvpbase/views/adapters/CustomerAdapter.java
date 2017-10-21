@@ -63,7 +63,6 @@ public class CustomerAdapter extends ArrayAdapter<Customer> {
         showall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(parent.getContext(), "Hiciste click", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(parent.getContext(), PhoneListActivity.class);
                 intent.putExtra(Constants.ITEM_CUSTOMER_PHONELIST,customer.getPhonesList());
                 intent.putExtra(Constants.ITEM_CUSTOMER_POSITION,position);

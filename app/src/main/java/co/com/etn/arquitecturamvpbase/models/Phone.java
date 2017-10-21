@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 public class Phone implements Serializable {
 
-    @SerializedName("descripcion")
+    @SerializedName("description")
     @Expose
     private String descripcion;
 

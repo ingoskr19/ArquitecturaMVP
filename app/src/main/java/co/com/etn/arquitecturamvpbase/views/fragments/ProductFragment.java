@@ -45,7 +45,7 @@ public class ProductFragment extends BaseFragments<ProductPresenter> implements 
         //return super.onCreateView(inflater, container, savedInstanceState);
 
         getBaseActivity().createProgressDialog();
-        showProgress(R.string.loading_message);
+        //showProgress(R.string.loading_message);
         setPresenter(new ProductPresenter(new ProductRepository()));
         getPresenter().inject(this,getValidateInternet());
         productList = (ListView) view.findViewById(R.id.product_listview);
@@ -60,6 +60,7 @@ public class ProductFragment extends BaseFragments<ProductPresenter> implements 
             }
         });
 
+        productList.setNestedScrollingEnabled(true);
         swipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.product_activity_swipeRefresh);
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

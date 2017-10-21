@@ -1,5 +1,7 @@
 package co.com.etn.arquitecturamvpbase.views.activities.customers;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import co.com.etn.arquitecturamvpbase.R;
 import co.com.etn.arquitecturamvpbase.helper.Constants;
 import co.com.etn.arquitecturamvpbase.models.Phone;
+import co.com.etn.arquitecturamvpbase.views.activities.mapas.MapsActivity;
 import co.com.etn.arquitecturamvpbase.views.adapters.CustomerAdapter;
 import co.com.etn.arquitecturamvpbase.views.adapters.PhoneAdapter;
 
@@ -21,6 +24,7 @@ public class PhoneListActivity extends AppCompatActivity {
     private int position;
     private PhoneAdapter phoneAdapter;
     private ListView customersListView;
+    private FloatingActionButton viewMaps;
 
 
     @Override
@@ -29,6 +33,15 @@ public class PhoneListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_phone_list_activity);
         getData();
         callAdapter(list);
+        viewMaps = (FloatingActionButton) findViewById(R.id.list_phone_viewMaps);
+        viewMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PhoneListActivity.this, MapsActivity.class);
+                intent.putExtra(Constants.ITEM_CUSTOMER_PHONELIST,list);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getData() {

@@ -8,4 +8,12 @@
         android:id="@+id/phone_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></ListView>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/list_phone_viewMaps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:src="@drawable/ic_location"
+        android:tint="@color/colorGray"
+        />
 </android.support.design.widget.CoordinatorLayout>

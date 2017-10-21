@@ -11,5 +11,6 @@ import retrofit.RetrofitError;
 
 public interface ILoginRepository {
     public Login login(String email, String password) throws RetrofitError;
+    public Login login(String token) throws RetrofitError;
     public SharedPreferences getSharedPreferences();
 }

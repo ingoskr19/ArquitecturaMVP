@@ -22,6 +22,10 @@ public class Constants {
 
     public static final String TITLE_PRODUCT = "Productos";
     public static final String TITLE_CONTACT = "Contactos";
+    public static final CharSequence TITLE_PROFILE = "Perfil";
 
     public static final String SP_LOGIN = "login";
+    public static final String PREFERENCE = "co.com.etn.arquitecturamvpbase";
+
+    public static final String EMPTY = "";
 }

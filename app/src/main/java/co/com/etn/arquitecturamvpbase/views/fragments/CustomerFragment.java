@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class CustomerFragment extends BaseFragments<CustomerPresenter> implement
     private ListView customersList;
     private FloatingActionButton addCustomer;
     private View view;
+    private SwipeRefreshLayout swipeRefresh;
 
     @Nullable
     @Override
@@ -47,6 +49,7 @@ public class CustomerFragment extends BaseFragments<CustomerPresenter> implement
         showProgress(R.string.loading_message);
         getPresenter().getCustomersList();
 
+
         addCustomer = (FloatingActionButton) view.findViewById(R.id.list_customer_add);
         addCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +59,15 @@ public class CustomerFragment extends BaseFragments<CustomerPresenter> implement
             }
         });
 
+        customersList = (ListView) view.findViewById(R.id.customer_listview);
+        customersList.setNestedScrollingEnabled(true);
+        swipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.customer_listview_swipe);
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getPresenter().getCustomersList();
+            }
+        });
 
         return this.view;
     }
@@ -63,6 +75,7 @@ public class CustomerFragment extends BaseFragments<CustomerPresenter> implement
     @Override
     public void showAlertDialog(int msg) {
         showMessage(msg);
+        swipeRefresh.setRefreshing(false);
     }
 
     @Override
@@ -77,6 +90,7 @@ public class CustomerFragment extends BaseFragments<CustomerPresenter> implement
     }
 
     private void callAdapter(final ArrayList<Customer> list) {
+        swipeRefresh.setRefreshing(false);
         customersList = (ListView) this.view.findViewById(R.id.customer_listview);
         customerAdapter = new CustomerAdapter(getActivity(),customersList.getId(),list);
         if(customerAdapter!=null) {

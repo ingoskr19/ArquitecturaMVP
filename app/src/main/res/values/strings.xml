@@ -34,4 +34,9 @@
     <string name="login_email">Email</string>
     <string name="login_password">Contraseña</string>
     <string name="login_button_login">Iniciar Sesión</string>
+    <string name="config_title">INFORMACION DEL PERFIL</string>
+    <string name="invitaciones">Aceptar Invitaciones Automaticamente</string>
+    <string name="sincronizar">Sincronizar cuenta con</string>
+    <string name="close_session">Cerrar Sesión</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

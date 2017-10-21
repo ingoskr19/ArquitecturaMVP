@@ -27,6 +27,11 @@ public class LoginRepository implements ILoginRepository {
             return service.login(email,password);
     }
 
+    @Override
+    public Login login(String token) throws RetrofitError {
+            return service.login("bearer:"+token);
+    }
+
     public SharedPreferences getSharedPreferences() {
         return sharedPreferences;
     }
