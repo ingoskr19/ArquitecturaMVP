@@ -20,7 +20,7 @@ public interface IProductScheme {
             + COLUMN_PRODUT_DESCRIPTION + " TEXT, "
             + COLUMN_PRODUCT_QUANTITY + " TEXT, "
             + COLUMN_PRODUCT_PRICE + " TEXT "
-//            + COLUMN_SYNC + " TEXT "
+            //+ COLUMN_SYNC + " TEXT "
             + " );";
 
     String [] PRODUCT_COLUMNS = new String[] {

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "340246865666",
+    "firebase_url": "https://arquitectura-mvp.firebaseio.com",
+    "project_id": "arquitectura-mvp",
+    "storage_bucket": "arquitectura-mvp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340246865666:android:8cc77822880b1d62",
+        "android_client_info": {
+          "package_name": "co.com.etn.arquitecturamvpbase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340246865666-oder83miv0use7j3h9hppakgq6qk5kbs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdUlQyscqV7i2Hedczm0BPIOVvuN_TKmQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

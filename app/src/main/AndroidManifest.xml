@@ -12,6 +12,14 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true" />
 
     <application
         android:name=".App"
@@ -30,13 +38,18 @@
         <activity android:name=".views.activities.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".views.activities.customers.PhoneListActivity" />
         <activity android:name=".views.activities.DashBoardActivity" />
-        <activity android:name=".views.activities.mapas.map_activity">
-        </activity>
+        <activity android:name=".views.activities.mapas.map_activity" />
+
+        <service
+            android:name=".helper.FetchAddressIntentService"
+            android:exported="false" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -49,7 +62,23 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".views.activities.mapas.MapsActivity"/>
+        <activity android:name=".views.activities.mapas.MapsActivity" />
+        <activity android:name=".views.activities.mapas.AddressActivity" />
+        <activity android:name=".views.activities.device.MainDevice" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="co.com.etn.arquitecturamvpbase"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity android:name=".views.activities.device.AudioActivity" />
+        <activity android:name=".views.activities.device.VideoActivity" />
+        <activity android:name=".views.activities.device.CodeReaderActivity"></activity>
     </application>
 
 </manifest>

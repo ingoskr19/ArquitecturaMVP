@@ -3,6 +3,7 @@ package co.com.etn.arquitecturamvpbase.repositories.products;
 import java.util.ArrayList;
 
 import co.com.etn.arquitecturamvpbase.helper.ServicesFactory;
+import co.com.etn.arquitecturamvpbase.helper.TypeDecryption;
 import co.com.etn.arquitecturamvpbase.models.ProductResponse;
 import co.com.etn.arquitecturamvpbase.models.Product;
 import co.com.etn.arquitecturamvpbase.repositories.MapperError;
@@ -19,7 +20,7 @@ public class ProductRepository implements IProductRepository {
     private IServices services;
 
     public ProductRepository() {
-        ServicesFactory servicesFactory = new ServicesFactory();
+        ServicesFactory servicesFactory = new ServicesFactory(TypeDecryption.JSON);
         services = (IServices) servicesFactory.getInstance(IServices.class);
     }
 

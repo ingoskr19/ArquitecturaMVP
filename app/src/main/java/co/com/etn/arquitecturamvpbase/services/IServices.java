@@ -2,6 +2,8 @@ package co.com.etn.arquitecturamvpbase.services;
 
 import java.util.ArrayList;
 
+import co.com.etn.arquitecturamvpbase.models.Breakfast;
+import co.com.etn.arquitecturamvpbase.models.Note;
 import co.com.etn.arquitecturamvpbase.models.ProductResponse;
 import co.com.etn.arquitecturamvpbase.models.Product;
 import retrofit.http.Body;
@@ -28,5 +30,11 @@ public interface IServices
 
     @PUT("/products/{id}")
     ProductResponse updateProduct(@Path("id") String _id, @Body Product product);
+
+    @GET("/note.xml")
+    Note getNote();
+
+    @GET("/simple.xml")
+    Breakfast getBreakfastMenu();
 
 }

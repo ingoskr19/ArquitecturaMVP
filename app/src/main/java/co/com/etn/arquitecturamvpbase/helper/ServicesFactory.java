@@ -12,6 +12,8 @@ import retrofit.converter.Converter;
 import retrofit.converter.GsonConverter;
 
 import co.com.etn.arquitecturamvpbase.helper.Constants;
+import retrofit.converter.SimpleXMLConverter;
+
 /**
  * Created by Erika on 16/09/2017.
  */
@@ -19,10 +21,23 @@ import co.com.etn.arquitecturamvpbase.helper.Constants;
 public class ServicesFactory {
 
     private static final String API_BASE_PATH = Constants.URL_BASE;
+    private static final String API_XML_BASE_PATH = Constants.URL_XML_BASE;
     private RestAdapter restAdapter;
 
-    public ServicesFactory() {
-        createServicesFactoryInstance(getGsonConverter(), API_BASE_PATH);
+    public ServicesFactory(TypeDecryption type) {
+        Converter converter = null;
+        String baseURL = "";
+        switch (type){
+            case XML:
+                baseURL = API_XML_BASE_PATH;
+                converter = new SimpleXMLConverter();
+                break;
+            case JSON:
+                baseURL = API_BASE_PATH;
+                converter = getGsonConverter();
+                break;
+        }
+        createServicesFactoryInstance(converter, baseURL);
     }
 
     private void createServicesFactoryInstance(Converter converter, String baseUrl) {

@@ -46,6 +46,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     public ArrayList<LatLng> points = new ArrayList<>();
     ArrayList<Phone> phoneList;
+    double currentLAT = 0;
+    double currentLON = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void loadData() {
         phoneList = (ArrayList<Phone>) getIntent().getSerializableExtra(Constants.ITEM_CUSTOMER_PHONELIST);
+        currentLAT = getIntent().getDoubleExtra("CurrentLAT",0);
+        currentLON = getIntent().getDoubleExtra("CurrentLON",0);
+
         for(Phone phone : phoneList){
             LatLng point = new LatLng(phone.getLocation().getCoordinates()[0],
                     phone.getLocation().getCoordinates()[1]);
@@ -115,15 +120,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.addMarker(new MarkerOptions().position(points.get(i)).title(phoneList.get(i).getDescripcion())
                     .icon(bitMapDescriptorFromVecctor(this,R.drawable.ic_location)));
         }
+
+        mMap.addMarker(new MarkerOptions().position(new LatLng(currentLAT,currentLON)).title("Ubicación actual")
+                .icon(bitMapDescriptorFromVecctor(this,R.drawable.ic_get_location)));
         //mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(points.get(0) ,13));
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .tilt(80)
-                .target(points.get(0))
+                .target(points.get(points.size()-1))
                 .bearing(20)
                 .zoom(13)
                 .build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        if(points.size()<2){
+            points.add(new LatLng(currentLAT,currentLON));
+        }
         calculateRoute();
+
     }
 
     RoutingListener routingListener = new RoutingListener() {

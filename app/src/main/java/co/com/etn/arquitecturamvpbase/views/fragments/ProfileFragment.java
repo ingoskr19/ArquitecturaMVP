@@ -1,27 +1,23 @@
 package co.com.etn.arquitecturamvpbase.views.fragments;
 
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-
-import java.net.URI;
 
 import co.com.etn.arquitecturamvpbase.R;
 import co.com.etn.arquitecturamvpbase.helper.Constants;
 import co.com.etn.arquitecturamvpbase.helper.CustomSharedPreferences;
 import co.com.etn.arquitecturamvpbase.models.Login;
 import co.com.etn.arquitecturamvpbase.presenters.ProfilePresenter;
-import co.com.etn.arquitecturamvpbase.presenters.products.ProductPresenter;
-import co.com.etn.arquitecturamvpbase.repositories.products.ProductRepository;
 import co.com.etn.arquitecturamvpbase.views.BaseFragments;
+import co.com.etn.arquitecturamvpbase.views.activities.device.MainDevice;
 import co.com.etn.arquitecturamvpbase.views.profile.IProfileView;
 
 /**
@@ -69,5 +65,12 @@ public class ProfileFragment extends BaseFragments<ProfilePresenter> implements 
         tv_losts = (TextView) view.findViewById(R.id.profile_activity_losts);
         tv_username = (TextView) view.findViewById(R.id.profile_textvie_username);
         logo = (ImageView) view.findViewById(R.id.profile_imageview_logo);
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MainDevice.class);
+                startActivity(intent);
+            }
+        });
     }
 }

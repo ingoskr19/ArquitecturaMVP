@@ -39,4 +39,6 @@
     <string name="sincronizar">Sincronizar cuenta con</string>
     <string name="close_session">Cerrar Sesión</string>
     <string name="title_activity_maps">Map</string>
+    <string name="video_button">Video</string>
+    <string name="barcode_button">Leer Código</string>
 </resources>

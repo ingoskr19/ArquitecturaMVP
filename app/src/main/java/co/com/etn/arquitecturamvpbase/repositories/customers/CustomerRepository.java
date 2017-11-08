@@ -3,6 +3,7 @@ package co.com.etn.arquitecturamvpbase.repositories.customers;
 import java.util.ArrayList;
 
 import co.com.etn.arquitecturamvpbase.helper.ServicesFactory;
+import co.com.etn.arquitecturamvpbase.helper.TypeDecryption;
 import co.com.etn.arquitecturamvpbase.models.Customer;
 import co.com.etn.arquitecturamvpbase.repositories.MapperError;
 import co.com.etn.arquitecturamvpbase.repositories.RepositoryError;
@@ -18,7 +19,7 @@ public class CustomerRepository implements ICustomerRepository {
     ICustomerServices service;
 
     public CustomerRepository() {
-        ServicesFactory servicesFactory = new ServicesFactory();
+        ServicesFactory servicesFactory = new ServicesFactory(TypeDecryption.JSON);
         service = (ICustomerServices) servicesFactory.getInstance(ICustomerServices.class);
     }
 

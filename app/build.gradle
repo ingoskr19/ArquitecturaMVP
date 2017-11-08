@@ -2,9 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "co.com.etn.arquitecturamvpbase"
+        manifestPlaceholders = [onesignal_app_id:"e8335110-5e62-48fc-97a3-1eda3397f9b6",
+                                onesignal_google_project_number: "REMOTE" ]
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
@@ -20,19 +22,29 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    //noinspection GradleCompatible
+    compile 'com.android.support:appcompat-v7:25.+'
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile ('com.squareup.retrofit:converter-simplexml:1.9.0'){
+        exclude group: 'xpp3', module:'xpp3'
+        exclude group: 'stax', module:'stax-api'
+        exclude group: 'stax', module:'stax'
+    }
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.squareup.picasso:picasso:2.5.+'
-    compile 'com.google.android.gms:play-services-maps:11.0.4'
+    compile 'com.google.android.gms:play-services:11.2.2'
     compile 'com.github.jd-alexander:library:1.1.0'
+    compile 'com.android.support:recyclerview-v7:25.+'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.journeyapps:zxing-android-embedded:3.5.0'
+    compile 'com.onesignal:OneSignal:3.+@aar'
     testCompile 'org.mockito:mockito-core:1.+'
     testCompile 'junit:junit:4.12'
 }
